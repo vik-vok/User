@@ -1,13 +1,14 @@
+import json
+
+
 def user_handler(request):
+    user = {
+        "first_name": "John",
+        "last_name": "Doe",
+        "email": "JohnDoe@gmail.com",
+        "age": 30,
+        "city": "New York",
+    }
 
-    request_json = request.get_json(silent=True)
-    request_args = request.args
-
-    if request_args and 'userId' in request_args:
-        user_id = request_args['userId']
-    else:
-        user_id = 'UserId'
-
-    # this function retrieves user information, with its id
-
-    return user_id
+    # convert into JSON:
+    return json.dumps(user)

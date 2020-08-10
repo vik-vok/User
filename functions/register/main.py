@@ -4,4 +4,4 @@ def user_register(request):
 
     # firebase interaction for authentication
     # register and save in database/firestore user object
-    return 'User successfully registered'
+    return "User successfully registered"
