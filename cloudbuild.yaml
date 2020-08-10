@@ -5,7 +5,7 @@ steps:
     # (pip packages won't be preserved in future steps!)
     args: [-c, 'pip install -r requirements.txt', '&&', 'pytest']
     dir: 'functions/id/get'
-  - name: 'gcr.io/cloud-builders/gcloud'
+  - name: 'gcr.io/cloud-builders/gcloud@sha256:4ea77d19d7336d5a8dc4ae0e609d7f5b45fca067c34b70d7ed6740af229392c6'
     args: ['functions', 'deploy', 'user_handler', '--trigger-http', '--runtime', 'python37', '--region=europe-west1', '--allow-unauthenticated']
     dir: 'functions/id/get'
 
