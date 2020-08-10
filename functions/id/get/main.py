@@ -1,4 +1,3 @@
-
 def user_handler(request):
     request_json = request.get_json(silent=True)
     request_args = request.args
@@ -13,4 +12,3 @@ def user_handler(request):
     # this function retrieves user information, with its id
 
     return user_id
-
