@@ -6,5 +6,15 @@ steps:
     args: [-c, 'pip install -r requirements.txt', '&&', 'pytest']
     dir: 'functions/id/get'
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['functions', 'deploy', 'user_handler', '--trigger-http', '--runtime', 'python37', '--entry-point', 'user_handler']
+    args: ['functions', 'deploy', 'user_handler', '--trigger-http', '--runtime', 'python37', '--entry-point', 'user_handler', '--allow-unauthenticated']
     dir: 'functions/id/get'
+
+  - name: 'docker.io/library/python:3.7'
+    entrypoint: /bin/sh
+    # Run pip install and pytest in the same build step
+    # (pip packages won't be preserved in future steps!)
+    args: [-c, 'pip install -r requirements.txt', '&&', 'pytest']
+    dir: 'functions/list'
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['functions', 'deploy', 'users_handler', '--trigger-http', '--runtime', 'python37', '--entry-point', 'users_handler', '--allow-unauthenticated']
+    dir: 'functions/list'
