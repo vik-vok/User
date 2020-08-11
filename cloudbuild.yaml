@@ -14,7 +14,7 @@ steps:
     # Run pip install and pytest in the same build step
     # (pip packages won't be preserved in future steps!)
     args: [-c, 'pip install -r requirements.txt', '&&', 'pytest']
-    dir: 'functions/list'
+    dir: 'functions/all'
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['functions', 'deploy', 'users_handler', '--runtime=python37', '--trigger-http', '--region=europe=west1']
-    dir: 'functions/list'
+    dir: 'functions/all'
