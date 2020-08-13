@@ -1,14 +1,30 @@
+import json
+from google.cloud import datastore
+
+client = datastore.Client('speech-similarity')
+
+
 def user_update(request):
+
     request_json = request.get_json(silent=True)
     request_args = request.args
-
-    if request_json and "userId" in request_json:
-        user_id = str(request_json["userId"]) + "/json"
-    elif request_args and "userId" in request_args:
-        user_id = str(request_args["userId"]) + "/args"
+    if request_json and 'userId' in request_json:
+        user_id = request_json['userId']
+    elif request_args and 'userId' in request_args:
+        user_id = request_args['userId']
     else:
-        user_id = "UserId"
+        # return error apiresponse
+        return ""
 
-    # take object from json
-    # update user, if it's own account
-    return user_id
+    # check authentification and autorization
+
+    with client.transaction():
+        key = client.key('User', user_id)
+        user = client.get(key)
+
+        for arg, val in request_json.items():
+            if arg != 'userId':
+                user[arg] = val
+        client.put(user)
+
+    return json.dumps({})
