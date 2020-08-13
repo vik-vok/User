@@ -6,7 +6,7 @@ steps:
     args: [-c, 'pip install -r requirements.txt', '&&', 'pytest']
     dir: 'functions/all'
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['functions', 'deploy', 'users_handler', '--runtime=python37', '--trigger-http', '--region=europe-west1']
+    args: ['functions', 'deploy', 'user-get-all', '--runtime=python37', '--trigger-http', '--region=europe-west1', '--entry-point=users_handler']
     dir: 'functions/all'
 
   - name: 'docker.io/library/python:3.7'
@@ -16,7 +16,7 @@ steps:
     args: [-c, 'pip install -r requirements.txt', '&&', 'pytest']
     dir: 'functions/id/get'
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['functions', 'deploy', 'user_handler', '--runtime=python37', '--trigger-http', '--region=europe-west1']
+    args: ['functions', 'deploy', 'user-get', '--runtime=python37', '--trigger-http', '--region=europe-west1', '--entry-point=user_handler']
     dir: 'functions/id/get'
 
   - name: 'docker.io/library/python:3.7'
@@ -26,7 +26,7 @@ steps:
     args: [-c, 'pip install -r requirements.txt', '&&', 'pytest']
     dir: 'functions/id/delete'
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['functions', 'deploy', 'user_delete', '--runtime=python37', '--trigger-http', '--region=europe-west1']
+    args: ['functions', 'deploy', 'user-delete', '--runtime=python37', '--trigger-http', '--region=europe-west1', '--entry-point=user_delete']
     dir: 'functions/id/delete'
 
   - name: 'docker.io/library/python:3.7'
@@ -36,7 +36,7 @@ steps:
     args: [-c, 'pip install -r requirements.txt', '&&', 'pytest']
     dir: 'functions/id/update'
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['functions', 'deploy', 'user_update', '--runtime=python37', '--trigger-http', '--region=europe-west1']
+    args: ['functions', 'deploy', 'user-update', '--runtime=python37', '--trigger-http', '--region=europe-west1', '--entry-point=user_update']
     dir: 'functions/id/update'
 
   - name: 'docker.io/library/python:3.7'
@@ -66,5 +66,5 @@ steps:
     args: [-c, 'pip install -r requirements.txt', '&&', 'pytest']
     dir: 'functions/register'
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['functions', 'deploy', 'user_register', '--runtime=python37', '--trigger-http', '--region=europe-west1']
+    args: ['functions', 'deploy', 'user-register', '--runtime=python37', '--trigger-http', '--region=europe-west1', '--entry-point=user_register']
     dir: 'functions/register'
