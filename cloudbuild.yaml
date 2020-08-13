@@ -4,6 +4,16 @@ steps:
     # Run pip install and pytest in the same build step
     # (pip packages won't be preserved in future steps!)
     args: [-c, 'pip install -r requirements.txt', '&&', 'pytest']
+    dir: 'functions/all'
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['functions', 'deploy', 'users_handler', '--runtime=python37', '--trigger-http', '--region=europe-west1']
+    dir: 'functions/all'
+
+  - name: 'docker.io/library/python:3.7'
+    entrypoint: /bin/sh
+    # Run pip install and pytest in the same build step
+    # (pip packages won't be preserved in future steps!)
+    args: [-c, 'pip install -r requirements.txt', '&&', 'pytest']
     dir: 'functions/id/get'
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['functions', 'deploy', 'user_handler', '--runtime=python37', '--trigger-http', '--region=europe-west1']
@@ -14,7 +24,27 @@ steps:
     # Run pip install and pytest in the same build step
     # (pip packages won't be preserved in future steps!)
     args: [-c, 'pip install -r requirements.txt', '&&', 'pytest']
-    dir: 'functions/all'
+    dir: 'functions/id/delete'
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['functions', 'deploy', 'users_handler', '--runtime=python37', '--trigger-http', '--region=europe-west1']
-    dir: 'functions/all'
+    args: ['functions', 'deploy', 'user_delete', '--runtime=python37', '--trigger-http', '--region=europe-west1']
+    dir: 'functions/id/delete'
+
+  - name: 'docker.io/library/python:3.7'
+    entrypoint: /bin/sh
+    # Run pip install and pytest in the same build step
+    # (pip packages won't be preserved in future steps!)
+    args: [-c, 'pip install -r requirements.txt', '&&', 'pytest']
+    dir: 'functions/id/update'
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['functions', 'deploy', 'user_update', '--runtime=python37', '--trigger-http', '--region=europe-west1']
+    dir: 'functions/id/update'
+
+  - name: 'docker.io/library/python:3.7'
+    entrypoint: /bin/sh
+    # Run pip install and pytest in the same build step
+    # (pip packages won't be preserved in future steps!)
+    args: [-c, 'pip install -r requirements.txt', '&&', 'pytest']
+    dir: 'functions/register'
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['functions', 'deploy', 'user_register', '--runtime=python37', '--trigger-http', '--region=europe-west1']
+    dir: 'functions/register'
