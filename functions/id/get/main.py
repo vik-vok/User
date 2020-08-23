@@ -5,7 +5,7 @@ import google.cloud.exceptions
 client = datastore.Client('speech-similarity')
 
 
-def user_handler(request):
+def user_get(request):
     request_json = request.get_json(silent=True)
     request_args = request.args
     if request_json and 'userId' in request_json:
