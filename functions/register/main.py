@@ -11,6 +11,8 @@ def user_register(request):
         complete_key = datastore_client.key('User', request_json['id'])
         user = datastore.Entity(key=complete_key)
 
+        del request_json['id']
+
         user.update(request_json)
         datastore_client.put(user)
 
