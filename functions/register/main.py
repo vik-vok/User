@@ -4,15 +4,14 @@ datastore_client = datastore.Client('speech-similarity')
 
 
 def user_register(request):
-
     request_json = request.get_json(silent=True)
 
     with datastore_client.transaction():
-        incomplete_key = datastore_client.key('User')
-        user = datastore.Entity(key=incomplete_key)
+        # Key = Firestore.uid
+        complete_key = datastore_client.key('User', request_json['id'])
+        user = datastore.Entity(key=complete_key)
+
         user.update(request_json)
         datastore_client.put(user)
 
-    # firebase interaction for authentication
-    # register and save in database/firestore user object
     return "User successfully registered"
