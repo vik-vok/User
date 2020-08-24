@@ -1,3 +1,4 @@
+import json
 from google.cloud import datastore
 from google.cloud import logging
 
@@ -17,7 +18,7 @@ def user_register(request):
         complete_key = datastore_client.key('User', request_json['id'])
         user = datastore.Entity(key=complete_key)
 
-    return request_json
+    return json.dumps(request_json)
         # data = {
         #     "username": request_json["username"],
         #     "email": request_json["email"],
