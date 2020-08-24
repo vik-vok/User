@@ -23,5 +23,5 @@ def user_register(request):
 
         user.update(data)
         datastore_client.put(user)
-    return json.dumps(request_json)
+    return json.dumps(user)
 
