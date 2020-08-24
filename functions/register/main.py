@@ -5,10 +5,6 @@ from google.cloud import logging
 # DataStore
 datastore_client = datastore.Client('speech-similarity')
 
-# Logging
-logging_client = logging.Client()
-logger = logging_client.logger('User Registration')
-
 def user_register(request):
     request_json = request.get_json(silent=True)
 
@@ -25,8 +21,7 @@ def user_register(request):
             "emailVerified": request_json["emailVerified"],
         }
 
-        logger.log_text(data)
+        user.update(data)
+        datastore_client.put(user)
     return json.dumps(request_json)
-        # user.update(data)
-        # datastore_client.put(user)
 
