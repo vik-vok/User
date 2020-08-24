@@ -18,15 +18,15 @@ def user_register(request):
         complete_key = datastore_client.key('User', request_json['id'])
         user = datastore.Entity(key=complete_key)
 
-    return json.dumps(request_json)
-        # data = {
-        #     "username": request_json["username"],
-        #     "email": request_json["email"],
-        #     "photoUrl": request_json["photoUrl"],
-        #     "emailVerified": request_json["emailVerified"],
-        # }
+        data = {
+            "username": request_json["username"],
+            "email": request_json["email"],
+            "photoUrl": request_json["photoUrl"],
+            "emailVerified": request_json["emailVerified"],
+        }
 
-        # logger.log_text(data)
+        logger.log_text(data)
+    return json.dumps(request_json)
         # user.update(data)
         # datastore_client.put(user)
 
