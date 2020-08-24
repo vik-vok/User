@@ -8,7 +8,7 @@ array=(
   "${REPO_NAME}-delete":"${REPO_NAME}_delete":'functions/id/delete'
   "${REPO_NAME}-get":"${REPO_NAME}_get":'functions/id/get'
   "${REPO_NAME}-update":"${REPO_NAME}_update":'functions/id/update'
-  "${REPO_NAME}-create":"${REPO_NAME}_register":'functions/register'
+  "${REPO_NAME}-register":"${REPO_NAME}_register":'functions/register'
 )
 
 for i in "${array[@]}"; do

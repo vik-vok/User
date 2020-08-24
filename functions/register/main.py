@@ -13,7 +13,6 @@ def user_register(request):
 
     with datastore_client.transaction():
         # Key = Firestore.uid
-        print(request_json)
         complete_key = datastore_client.key('User', request_json['id'])
         user = datastore.Entity(key=complete_key)
 
