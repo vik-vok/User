@@ -19,5 +19,5 @@ def user_get(request):
 
     key = client.key('User', user_id)
     user = client.get(key)
-
+    user['id'] = user_id
     return json.dumps(user)
