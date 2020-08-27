@@ -11,11 +11,11 @@ def user_get(request):
     
     if request_json and 'userId' in request_json:
         user_id = request_json['userId']
-    elif request_args and 'userId'` in request_args:
+    elif request_args and 'userId' in request_args:
         user_id = request_args['userId']
     else:
         # return error apiresponse
-        return ""`
+        return ""
 
     key = client.key('User', user_id)
     user = client.get(key)
