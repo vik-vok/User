@@ -1,7 +1,8 @@
 import json
 from google.cloud import datastore
 
-datastore_client = datastore.Client('speech-similarity')
+datastore_client = datastore.Client("speech-similarity")
+
 
 def user_original_voices(request):
     # 1. Get User ID from request
@@ -15,15 +16,15 @@ def user_original_voices(request):
         return (json.dumps({"error": "Missing parameter: userId"}), 422, {})
 
     # 2. Fetch All Original Voices
-    query = datastore_client.query(kind='OriginalVoice')
-    query.add_filter('userId', '=', userId)
+    query = datastore_client.query(kind="OriginalVoice")
+    query.add_filter("userId", "=", userId)
     results = list(query.fetch())
 
     # 3. Fetch ID's
     query.keys_only()
     keys = list(query.fetch())
     for i in range(len(results)):
-        results[i]['originalVoiceId'] = keys[i].id
+        results[i]["originalVoiceId"] = keys[i].id
 
     # 4. return JSON data
     return json.dumps(results)
