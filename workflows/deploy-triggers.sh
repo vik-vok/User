@@ -9,6 +9,7 @@ array=(
   "${REPO_NAME}-get":"${REPO_NAME}_get":'functions/id/get'
   "${REPO_NAME}-update":"${REPO_NAME}_update":'functions/id/update'
   "${REPO_NAME}-register":"${REPO_NAME}_register":'functions/register'
+  "${REPO_NAME}-original-voices":"${REPO_NAME}_original_voices":'functions/id/originalvoices/get'
 )
 
 for i in "${array[@]}"; do
