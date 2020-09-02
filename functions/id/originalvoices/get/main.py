@@ -27,4 +27,4 @@ def user_original_voices(request):
         results[i]["originalVoiceId"] = keys[i].id
 
     # 4. return JSON data
-    return json.dumps(results)
+    return json.dumps(results, indent=4, sort_keys=True, default=str)
